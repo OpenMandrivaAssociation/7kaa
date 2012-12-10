@@ -70,3 +70,10 @@ EOF
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
 
+
+
+%changelog
+* Fri Mar 23 2012 Andrey Bondrov <abondrov@mandriva.org> 2.14.3-1mdv2011.0
++ Revision: 786258
+- imported package 7kaa
+
