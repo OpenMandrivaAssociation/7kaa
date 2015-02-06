@@ -1,6 +1,6 @@
 Name:		7kaa
 Version:	2.14.3
-Release:	%mkrel 1
+Release:	2
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2
