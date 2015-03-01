@@ -9,10 +9,12 @@ Source0:	http://sourceforge.net/projects/skfans/files/7KAA%20%{version}/%{name}-
 Source1:	%{name}.png
 Source2:	%{name}.xpm
 Patch0:		7kaa-2.14.3-datapath.patch
-BuildRequires:	SDL-devel
-BuildRequires:	SDL_net-devel
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(SDL_net)
 BuildRequires:	pkgconfig(openal)
+
 Requires:	%{name}-data
+
 Suggests:	%{name}-music
 
 %description
@@ -37,11 +39,10 @@ the GPL v2. The music has a slightly different license.
 %patch0 -p1
 
 %build
-%configure2_5x
+%configure
 %make
 
 %install
-%__rm -rf %{buildroot}
 %makeinstall_std
 
 %__mkdir_p %{buildroot}%{_datadir}/pixmaps
@@ -61,8 +62,6 @@ Icon=7kaa
 Categories=Game;StrategyGame;
 EOF
 
-%clean
-%__rm -rf %{buildroot}
 
 %files
 %doc COPYING README
@@ -70,10 +69,4 @@ EOF
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
 
-
-
-%changelog
-* Fri Mar 23 2012 Andrey Bondrov <abondrov@mandriva.org> 2.14.3-1mdv2011.0
-+ Revision: 786258
-- imported package 7kaa
 
