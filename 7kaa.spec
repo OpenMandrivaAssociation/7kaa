@@ -51,6 +51,12 @@ Ancient Adversaries game.
 %autosetup -p1
 
 %build
+%ifarch %{ix86}
+export CC=gcc
+export CXX=g++
+%define _disable_lto 1
+%endif
+
 # ARM uses unsigned chars, breaks compilation: https://github.com/the3dfxdude/7kaa/issues/81
 export CXXFLAGS="%{optflags} -fsigned-char"
 %configure2_5x --bindir=%{_gamesbindir} \
