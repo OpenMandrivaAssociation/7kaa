@@ -1,21 +1,25 @@
 Name:		7kaa
-Version:	2.14.3
-Release:	2
+Version:	2.15.2
+Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2
 URL:		http://7kfans.com/
-Source0:	http://sourceforge.net/projects/skfans/files/7KAA%20%{version}/%{name}-source-%{version}.tar.bz2
+Source0:	https://sourceforge.net/projects/skfans/files/7KAA%202.15.2/7kaa-2.15.2.tar.xz
+#source mirror: https://github.com/the3dfxdude/7kaa/releases/
 Source1:	%{name}.png
 Source2:	%{name}.xpm
-Patch0:		7kaa-2.14.3-datapath.patch
-BuildRequires:	pkgconfig(sdl)
-BuildRequires:	pkgconfig(SDL_net)
-BuildRequires:	pkgconfig(openal)
+#Patch0:		7kaa-2.14.3-datapath.patch
+
+BuildRequires:  gettext
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libenet)
+BuildRequires:  pkgconfig(sdl2)
+BuildRequires:  pkgconfig(openal)
 
 Requires:	%{name}-data
 
-Suggests:	%{name}-music
+Recommends:	%{name}-music
 
 %description
 Seven Kingdoms made departures from the traditional real-time strategy models
@@ -34,39 +38,51 @@ Enlight Software decided to release the game to the Open Source community
 in August 2009. At that time everything, but the music, was released under
 the GPL v2. The music has a slightly different license.
 
+%package data
+Summary:        Data files for Seven Kingdoms: Ancient Adversaries
+BuildArch:      noarch
+Conflicts:      %{name} < 2.14.6
+
+%description data
+This package contains arch-independent data files for the Seven Kingdoms:
+Ancient Adversaries game.
+
 %prep
-%setup -q
-%patch0 -p1
+%autosetup -p1
 
 %build
-%configure
-%make
+# ARM uses unsigned chars, breaks compilation: https://github.com/the3dfxdude/7kaa/issues/81
+export CXXFLAGS="%{optflags} -fsigned-char"
+%configure2_5x --bindir=%{_gamesbindir} \
+               --datadir=%{_gamesdatadir}
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
-%__mkdir_p %{buildroot}%{_datadir}/pixmaps
-%__install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
-%__install -D -m 644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/
+mkdir -p %{buildroot}%{_datadir}/pixmaps
+install -m 644 %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/
 
 # menu-entry
-%__mkdir_p  %{buildroot}%{_datadir}/applications
-%__cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
+mkdir -p  %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
 [Desktop Entry]
 Version=1.0
 Name=Seven Kingdoms
 Comment=Seven Kingdoms: Ancient Adversaries
 Type=Application
-Exec=7kaa
-Icon=7kaa
+Exec=%{name}
+Icon=%{name}
 Categories=Game;StrategyGame;
 EOF
 
+%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 %doc COPYING README
-%{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
+%{_gamesbindir}/%{name}
 
-
+%files data
+%{_gamesdatadir}/%{name}/
