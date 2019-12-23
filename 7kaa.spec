@@ -1,15 +1,14 @@
 Name:		7kaa
-Version:	2.15.2
+Version:	2.15.3
 Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2
 URL:		http://7kfans.com/
-Source0:	https://sourceforge.net/projects/skfans/files/7KAA%202.15.2/7kaa-2.15.2.tar.xz
+Source0:	https://sourceforge.net/projects/skfans/files/7KAA%20%{version}/7kaa-%{version}.tar.xz
 #source mirror: https://github.com/the3dfxdude/7kaa/releases/
 Source1:	%{name}.png
 Source2:	%{name}.xpm
-#Patch0:		7kaa-2.14.3-datapath.patch
 
 BuildRequires:  gettext
 BuildRequires:  pkgconfig(libcurl)
@@ -59,7 +58,7 @@ export CXX=g++
 
 # ARM uses unsigned chars, breaks compilation: https://github.com/the3dfxdude/7kaa/issues/81
 export CXXFLAGS="%{optflags} -fsigned-char"
-%configure2_5x --bindir=%{_gamesbindir} \
+%configure --bindir=%{_gamesbindir} \
                --datadir=%{_gamesdatadir}
 %make_build
 
