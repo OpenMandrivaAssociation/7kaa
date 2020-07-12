@@ -1,5 +1,5 @@
 Name:		7kaa
-Version:	2.15.4
+Version:	2.15.4p1
 Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
