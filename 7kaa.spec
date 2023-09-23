@@ -1,5 +1,5 @@
 Name:		7kaa
-Version:	2.15.5
+Version:	2.15.6
 Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
@@ -58,8 +58,8 @@ export CXX=g++
 
 # ARM uses unsigned chars, breaks compilation: https://github.com/the3dfxdude/7kaa/issues/81
 export CXXFLAGS="%{optflags} -fsigned-char"
-%configure --bindir=%{_gamesbindir} \
-               --datadir=%{_gamesdatadir}
+%configure --bindir=%{_bindir} \
+               --datadir=%{_datadir}
 %make_build
 
 %install
@@ -87,7 +87,7 @@ EOF
 %doc COPYING README
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
-%{_gamesbindir}/%{name}
+%{_bindir}/%{name}
 
 %files data
-%{_gamesdatadir}/%{name}/
+%{_datadir}/%{name}/
