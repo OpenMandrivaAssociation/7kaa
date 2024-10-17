@@ -4,7 +4,7 @@ Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2
-URL:		http://7kfans.com/
+URL:		https://7kfans.com/
 Source0:	https://sourceforge.net/projects/skfans/files/7KAA%20%{version}/7kaa-%{version}.tar.xz
 #source mirror: https://github.com/the3dfxdude/7kaa/releases/
 Source1:	%{name}.png
