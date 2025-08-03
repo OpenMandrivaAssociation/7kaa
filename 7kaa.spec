@@ -85,6 +85,7 @@ EOF
 
 %files -f %{name}.lang
 %doc COPYING README
+%doc %{_datadir}/doc/7kaa/README.source
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
 %{_bindir}/%{name}
