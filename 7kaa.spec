@@ -1,11 +1,11 @@
 Name:		7kaa
-Version:	2.15.6
+Version:	2.15.7
 Release:	1
 Summary:	Seven Kingdoms: Ancient Adversaries is a real-time strategy game
 Group:		Games/Strategy
 License:	GPLv2
 URL:		https://7kfans.com/
-Source0:	https://sourceforge.net/projects/skfans/files/7KAA%20%{version}/7kaa-%{version}.tar.xz
+Source0:	https://sourceforge.net/projects/skfans/files/7KAA%20%{version}/7kaa-%{version}.tar.gz
 #source mirror: https://github.com/the3dfxdude/7kaa/releases/
 Source1:	%{name}.png
 Source2:	%{name}.xpm
@@ -85,6 +85,7 @@ EOF
 
 %files -f %{name}.lang
 %doc COPYING README
+%doc %{_datadir}/doc/7kaa/README.source
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
 %{_bindir}/%{name}
