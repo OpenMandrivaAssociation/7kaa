@@ -10,6 +10,11 @@ Source0:	https://sourceforge.net/projects/skfans/files/7KAA%20%{version}/7kaa-%{
 Source1:	%{name}.png
 Source2:	%{name}.xpm
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  gettext
 BuildRequires:  pkgconfig(libcurl)
 BuildRequires:  pkgconfig(libenet)
